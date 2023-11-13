@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}Polls{% endblock %}</h1>
+<a class="action" href="{{ url_for('polls.create') }}">New</a>
+{% endblock %}
+
+{% block content %}
+{% for poll in polls %}
+<article class="poll">
+    <header>
+        <div>
+            <h1>{{ poll['title'] }}</h1>
+            <div class="shortDesc">{{ poll['short_description'] }}</div>
+            <div class="about">by {{ poll['creator_id'] }} on {{ poll['created_time'] }}</div>
+        </div>
+        <a class="action" href="{{ url_for('polls.poll', pollId=poll['poll_id']) }}">View Full</a>
+    </header>
+    <div class="choices">
+        <h3>Choices</h3>
+        <p class="choices">
+            {% for choice in votes[loop.index0]['choices'] %}
+            {{ choice['choice']['text'] }} - {{ choice['total_votes'] }}<br>
+            {% endfor %}
+        </p>
+    </div>
+    <div class="description">
+        <h3>Description</h3>
+        <p class="body">{{ poll['long_description'] }}</p>
+    </div>
+</article>
+{% if not loop.last %}
+<hr>
+{% endif %}
+{% endfor %}
+{% endblock %}

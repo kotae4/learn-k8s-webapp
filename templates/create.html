@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}Create Poll{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).on('click', '.add_field', function () {
+        $('<br><input type="text" class="choiceInput" name="choice[]" value="">').insertAfter('.choiceInput:last');
+    })
+</script>
+<form method="post">
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" value=""><br>
+    <label for="creator">Author:</label>
+    <input type="text" id="creator" name="creator" value=""><br>
+    <label for="expiration">Expiration DateTime:</label>
+    <input type="datetime-local" id="expiration" name="expiration" value=""><br>
+    <label for="shortDesc">Short Description:</label>
+    <input type="text" id="shortDesc" name="shortDesc" value=""><br>
+    <label for="longDesc">Long Description:</label>
+    <input type="text" id="longDesc" name="longDesc" value=""><br>
+    <label for="choiceInput">Choices:</label><br>
+    <input type="text" id="choiceInput" class="choiceInput" name="choice[]" value=""><br>
+    <input type="button" class="add_field" value="Add Choice"><br>
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}
