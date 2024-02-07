@@ -5,12 +5,17 @@ from werkzeug.exceptions import abort
 
 from . import votingApi
 from .votingApi.rest import ApiException
+from .config import Settings, get_settings
 
 bp = Blueprint('polls', __name__)
 
 @bp.route('/')
 def index():
-    api_instance = votingApi.DefaultApi(votingApi.ApiClient())
+    settings : Settings = get_settings()
+    apiConfig: votingApi.Configuration = votingApi.Configuration()
+    portPart = "" if settings.backend_port == 0 else (":" + str(settings.backend_port))
+    apiConfig.host = settings.backend_protocol + "://" + settings.backend_host + portPart
+    api_instance = votingApi.DefaultApi(votingApi.ApiClient(configuration=apiConfig))
     try:
         # Get list of all polls
         polls: list[votingApi.PollRead] = api_instance.get_polls_polls_get()
@@ -40,7 +45,11 @@ def create():
                                         short_description=request.form['shortDesc'],
                                         long_description=request.form['longDesc'],
                                         choices=choices)
-        api_instance = votingApi.DefaultApi(votingApi.ApiClient())
+        settings : Settings = get_settings()
+        apiConfig: votingApi.Configuration = votingApi.Configuration()
+        portPart = "" if settings.backend_port == 0 else (":" + str(settings.backend_port))
+        apiConfig.host = settings.backend_protocol + "://" + settings.backend_host + portPart
+        api_instance = votingApi.DefaultApi(votingApi.ApiClient(configuration=apiConfig))
         try:
             # post poll using form data
             print("Creating poll with following body:")
@@ -55,7 +64,11 @@ def create():
 
 @bp.route('/poll/<int:pollId>', methods=('GET', 'POST'))
 def poll(pollId):
-    api_instance = votingApi.DefaultApi(votingApi.ApiClient())
+    settings : Settings = get_settings()
+    apiConfig: votingApi.Configuration = votingApi.Configuration()
+    portPart = "" if settings.backend_port == 0 else (":" + str(settings.backend_port))
+    apiConfig.host = settings.backend_protocol + "://" + settings.backend_host + portPart
+    api_instance = votingApi.DefaultApi(votingApi.ApiClient(configuration=apiConfig))
     pollInfo = None
     voteInfo: votingApi.VoteSummary = None
     if request.method == 'POST':

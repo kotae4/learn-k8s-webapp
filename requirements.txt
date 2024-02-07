@@ -3,3 +3,5 @@ six
 urllib3
 python_dateutil
 certifi
+pydantic-settings
+python-dotenv

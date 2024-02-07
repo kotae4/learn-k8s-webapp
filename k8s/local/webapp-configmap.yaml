@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: webapp-env
+data:
+  BACKEND_HOST: learn-k8s-apiserver-clusterip
+  BACKEND_PORT: 27036
+  SECRET_KEY: ajoke
