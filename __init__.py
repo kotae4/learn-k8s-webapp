@@ -1,6 +1,9 @@
 import sys
 sys.path.append("webapp")
 sys.path.append("webapp/votingApi")
+sys.path.append("learn-k8s-webapp")
+sys.path.append("learn-k8s-webapp/votingApi")
+sys.path.append(".")
 
 import os
 from flask import Flask

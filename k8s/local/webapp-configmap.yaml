@@ -4,5 +4,6 @@ metadata:
   name: webapp-env
 data:
   BACKEND_HOST: learn-k8s-apiserver-clusterip
-  BACKEND_PORT: 27036
+  BACKEND_PORT: "27525"
+  BACKEND_PROTOCOL: "http"
   SECRET_KEY: ajoke

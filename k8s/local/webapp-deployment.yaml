@@ -20,7 +20,7 @@ spec:
         - name: learn-k8s-webapp
           image: ghcr.io/kotae4/learn-k8s-webapp:latest
           envFrom:
-            - configMapRef:
+          - configMapRef:
               name: webapp-env
           ports:
             - containerPort: 80

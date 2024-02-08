@@ -18,6 +18,20 @@ The database is external (exists outside the cluster). This example will use a l
 
 It expects the [learn-k8s-apiserver](https://github.com/kotae4/learn-k8s-apiserver) microservice to be available at `http://api.testing.private:27036`.
 
+
+### Locally
+
+Create a .flaskenv file with this:
+```
+FLASK_APP=learn-k8s-webapp
+FLASK_RUN_PORT=27580
+FLASK_ENV=development
+FLASK_RUN_HOST=0.0.0.0
+```
+
+Then invoke from one directory up:
+`flask --app learn-k8s-webapp run --debug`.
+
 ## Regenerating votingApi client
 
 1. Run [learn-k8s-apiserver](https://github.com/kotae4/learn-k8s-apiserver) and open up <apiserver>/openapi.json.
