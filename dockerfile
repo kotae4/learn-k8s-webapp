@@ -6,6 +6,10 @@ ENV FLASK_ENV=development
 ENV FLASK_RUN_HOST=0.0.0.0
 ENV FLASK_RUN_PORT=80
 ENV FLASK_CONFIG=basicwebapp-settings.cfg
+ENV BACKEND_HOST=api.testing.private
+ENV BACKEND_PORT=27525
+ENV BACKEND_PROTOCOL=http
+ENV SECRET_KEY=ajoke
 
 EXPOSE $FLASK_RUN_PORT
 
@@ -14,7 +18,7 @@ WORKDIR /webapp
 ADD requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
-ADD . .
+ADD learn-k8s-webapp/ .
 
 WORKDIR /
-ENTRYPOINT [ "flask", "run", "--debug" ]
+ENTRYPOINT [ "flask", "--app", "webapp", "run", "--debug" ]

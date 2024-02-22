@@ -16,7 +16,7 @@ The database is external (exists outside the cluster). This example will use a l
 
 `docker run --name webapp -p 80:80 learning-k8s-webapp`
 
-It expects the [learn-k8s-apiserver](https://github.com/kotae4/learn-k8s-apiserver) microservice to be available at `http://api.testing.private:27036`.
+It expects the [learn-k8s-apiserver](https://github.com/kotae4/learn-k8s-apiserver) microservice to be available at `http://api.testing.private:27525`.
 
 
 ### Locally
@@ -29,7 +29,7 @@ FLASK_ENV=development
 FLASK_RUN_HOST=0.0.0.0
 ```
 
-Then invoke from one directory up:
+Then invoke:
 `flask --app learn-k8s-webapp run --debug`.
 
 ## Regenerating votingApi client
@@ -46,4 +46,4 @@ Then invoke from one directory up:
 4. `java -jar .\swagger-codegen-cli-3.0.47.jar generate -i openapi.json -l python -o votingApi -DpackageName=votingApi`
 5. Copy the votingApi directory back into `learn-k8s-webapp` directory
 6. Remove all code dealing with multiprocessing in `votingApi/api_client.py` if needed (AWS Lambdas)
-7. Open `votingApi/configuration.py` and make sure the host matches expectations (default: `http://api.testing.private:27036`)
+7. Open `votingApi/configuration.py` and make sure the host matches expectations (default: `http://api.testing.private:27525`)
