@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: learn-k8s-webapp
+  namespace: learn-k8s-webapp
   labels:
     app: learn-k8s-webapp
     tier: frontend

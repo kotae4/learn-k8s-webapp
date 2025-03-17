@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: learn-k8s-webapp-nodeport-service
+  namespace: learn-k8s-webapp
   labels:
     app: learn-k8s-webapp
     tier: frontend

@@ -29,7 +29,7 @@ docker build -t learning-k8s-webapp:latest .
 
 Running:
 ```bash
-docker run --rm -d --name webapp --network learn-k8s-network -p 80:80 -e BACKEND_HOST=apiserver -e BACKEND_PORT=27525 learning-k8s-webapp
+docker run --rm -d --name webapp --network learn-k8s-network -p 80:80 -e BACKEND_HOST=apiserver -e BACKEND_PORT=8080 learning-k8s-webapp
 ```
 
 ## Locally
