@@ -10,7 +10,7 @@
         <div>
             <h1>{{ poll['title'] }}</h1>
             <div class="shortDesc">{{ poll['short_description'] }}</div>
-            <div class="about">by {{ poll['creator_id'] }} on {{ poll['created_time'] }}</div>
+            <div class="about">by {{ poll['user'] }} expires on {{ poll['expiration'] }}</div>
         </div>
         <a class="action" href="{{ url_for('polls.index') }}">Home</a>
     </header>
@@ -18,10 +18,9 @@
         <h3>Choices</h3>
         <p class="choices">
         <form action="{{ url_for('polls.poll', pollId=poll['poll_id']) }}" method="post">
-            {% for choice in votes['choices'] %}
-            {{ choice['choice']['text'] }} - {{ choice['total_votes'] }}
-            <button class="action" name="choice_id" type="submit"
-                value="{{ choice['choice']['choice_id'] }}">Vote</button><br>
+            {% for choice in poll['choices'] %}
+            {{ choice['value'] }} - {{ poll['vote_summary'][choice['value']] }}
+            <button class="action" name="choice_id" type="submit" value="{{ choice['choice_id'] }}">Vote</button><br>
             {% endfor %}
         </form>
         </p>
